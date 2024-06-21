@@ -1,0 +1,704 @@
+three_coref_coref
+    foreach
+        relation.coreference($x, $y)
+        relation.coreference($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.coreference($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A and event B are COREFERENCE, then the relations between event B and event C should be the same as that between event A and event C.")
+
+three_coref_before
+    foreach
+        relation.coreference($x, $y)
+        relation.before($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.before($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A and event B are COREFERENCE, then the relations between event B and event C should be the same as that between event A and event C.")
+
+three_coref_overlap
+    foreach
+        relation.coreference($x, $y)
+        relation.overlap($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.overlap($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A and event B are COREFERENCE, then the relations between event B and event C should be the same as that between event A and event C.")
+
+three_coref_contains
+    foreach
+        relation.coreference($x, $y)
+        relation.contains($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.contains($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A and event B are COREFERENCE, then the relations between event B and event C should be the same as that between event A and event C.")
+
+three_coref_simultaneous
+    foreach
+        relation.coreference($x, $y)
+        relation.simultaneous($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.simultaneous($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A and event B are COREFERENCE, then the relations between event B and event C should be the same as that between event A and event C.")
+
+three_coref_ends_on
+    foreach
+        relation.coreference($x, $y)
+        relation.ends_on($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.ends_on($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A and event B are COREFERENCE, then the relations between event B and event C should be the same as that between event A and event C.")
+
+three_coref_begins_on
+    foreach
+        relation.coreference($x, $y)
+        relation.begins_on($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.begins_on($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A and event B are COREFERENCE, then the relations between event B and event C should be the same as that between event A and event C.")
+
+three_coref_cause
+    foreach
+        relation.coreference($x, $y)
+        relation.cause($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.cause($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A and event B are COREFERENCE, then the relations between event B and event C should be the same as that between event A and event C.")
+
+three_coref_precondition
+    foreach
+        relation.coreference($x, $y)
+        relation.precondition($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.precondition($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A and event B are COREFERENCE, then the relations between event B and event C should be the same as that between event A and event C.")
+
+three_coref_subevent
+    foreach
+        relation.coreference($x, $y)
+        relation.subevent($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.subevent($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A and event B are COREFERENCE, then the relations between event B and event C should be the same as that between event A and event C.")
+
+three_before_before
+    foreach
+        relation.before($x, $y)
+        relation.before($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.before($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A happens BEFORE event B, and event B happens BEFORE event C, then event A happens BEFORE event C.")
+
+three_before_overlap
+    foreach
+        relation.before($x, $y)
+        relation.overlap($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.before($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A happens BEFORE event B, and event B happens OVERLAP with event C, then event A happens BEFORE event C.")
+
+three_before_contains
+    foreach
+        relation.before($x, $y)
+        relation.contains($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.before($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A happens BEFORE event B, and event B’s time CONTAINS event C’s time, then event A happens BEFORE event C.")
+
+three_before_ends_on
+    foreach
+        relation.before($x, $y)
+        relation.ends_on($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.before($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A happens BEFORE event B, and event B ENDS-ON event C, then event A happens BEFORE event C.")
+
+three_before_begins_on
+    foreach
+        relation.before($x, $y)
+        relation.begins_on($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.before($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A happens BEFORE event B, and event B BEGINS-ON event C, then event A happens BEFORE event C.")
+
+three_before_simultaneous
+    foreach
+        relation.before($x, $y)
+        relation.simultaneous($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.before($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A happens BEFORE event B, and event B and event C happen SIMULTANEOUSly, then event A happens BEFORE event C.")
+
+three_overlap_before
+    foreach
+        relation.overlap($x, $y)
+        relation.before($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.before($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A happens OVERLAP with event B, and event B happens BEFORE event C, then event A happens BEFORE event C.")
+
+three_overlap_simultaneous
+    foreach
+        relation.overlap($x, $y)
+        relation.simultaneous($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.overlap($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A happens OVERLAP with event B, and event B and event C happen SIMULTANEOUSly, then event A happens OVERLAP event C.")
+
+three_contains_contains
+    foreach
+        relation.contains($x, $y)
+        relation.contains($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.contains($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A’s time CONTAINS event B’s time, and event B’s time CONTAINS event C’s time, then event A’s time CONTAINS event C’s time.")
+
+three_contains_simultaneous
+    foreach
+        relation.contains($x, $y)
+        relation.simultaneous($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.contains($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A’s time CONTAINS event B’s time, and event B and event C happen SIMULTANEOUSly, then event A’s time CONTAINS event C’s time.")
+
+three_ends_on_contains
+    foreach
+        relation.ends_on($x, $y)
+        relation.contains($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.before($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A ENDS-ON event B, and event B’s time CONTAINS event C’s time, then event A happens BEFORE event C.")
+
+three_ends_on_begins_on
+    foreach
+        relation.ends_on($x, $y)
+        relation.begins_on($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.ends_on($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A ENDS-ON event B, and event B BEGINS-ON event C, then event A ENDS-ON event C.")
+
+three_ends_on_simultaneous
+    foreach
+        relation.ends_on($x, $y)
+        relation.simultaneous($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.ends_on($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A ENDS-ON event B, and event B and event C happen SIMULTANEOUSly, then event A ENDS-ON event C.")
+
+three_begins_on_begins_on
+    foreach
+        relation.begins_on($x, $y)
+        relation.begins_on($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.begins_on($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A BEGINS-ON event B, and event B BEGINS-ON event C, then event A BEGINS-ON event C.")
+
+three_begins_on_simultaneous
+    foreach
+        relation.begins_on($x, $y)
+        relation.simultaneous($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.begins_on($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A BEGINS-ON event B, and event B and event C happen SIMULTANEOUSly, then event A BEGINS-ON event C.")
+
+three_simultaneous_before
+    foreach
+        relation.simultaneous($x, $y)
+        relation.before($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.before($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If events A and B happen SIMULTANEOUSly, and event B happens BEFORE event C, then event A happens BEFORE event C.")
+
+three_simultaneous_overlap
+    foreach
+        relation.simultaneous($x, $y)
+        relation.overlap($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.overlap($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If events A and B happen SIMULTANEOUSly, and event B happens OVERLAP with event C, then event A happens OVERLAP event C.")
+
+three_simultaneous_contains
+    foreach
+        relation.simultaneous($x, $y)
+        relation.contains($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.contains($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If events A and B happen SIMULTANEOUSly, and event B’s time CONTAINS event C’s time, then event A's time CONTAINS event C's time.")
+
+three_simultaneous_simultaneous
+    foreach
+        relation.simultaneous($x, $y)
+        relation.simultaneous($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.simultaneous($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If events A and B happen SIMULTANEOUSly, and event B and event C happen SIMULTANEOUSly, then event A and event C happen SIMULTANEOUSly.")
+
+three_simultaneous_ends_on
+    foreach
+        relation.simultaneous($x, $y)
+        relation.ends_on($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.ends_on($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If events A and B happen SIMULTANEOUSly, and event B ENDS-ON event C, then event A ENDS-ON event C.")
+
+three_simultaneous_begins_on
+    foreach
+        relation.simultaneous($x, $y)
+        relation.begins_on($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.begins_on($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If events A and B happen SIMULTANEOUSly, and event B BEGINS-ON event C, then event A BEGINS-ON event C.")
+
+
+three_cause_cause
+    foreach
+        relation.cause($x, $y)
+        relation.cause($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.cause($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A CAUSEs event B, and event B CAUSEs event C, then event A CAUSEs event C.")
+
+three_cause_precondition
+    foreach
+        relation.cause($x, $y)
+        relation.precondition($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.precondition($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A CAUSEs event B, and event B is event C’s PRECONDITION, then event A is event C’s PRECONDITION.")
+
+three_cause_subevent
+    foreach
+        relation.cause($x, $y)
+        relation.subevent($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.cause($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A CAUSEs event B, and event C is a SUBEVENT of event B, then event A CAUSEs event C.")
+
+three_precondition_precondition
+    foreach
+        relation.precondition($x, $y)
+        relation.precondition($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.precondition($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A is event B’s PRECONDITION, and event B is event C’s PRECONDITION, then event A is event C’s PRECONDITION.")
+
+three_precondition_subevent
+    foreach
+        relation.precondition($x, $y)
+        relation.subevent($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.precondition($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event A is event B’s PRECONDITION, and event C is a SUBEVENT of event B, then event A is event C’s PRECONDITION.")
+
+three_subevent_subevent
+    foreach
+        relation.subevent($x, $y)
+        relation.subevent($y, $z)
+        relation.not_equal($x, $z)
+    assert
+        relation.subevent($x, $z)
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import engine_rules
+        python engine_rules.setdefault(($x, $y, $z), []).append("If event B is a SUBEVENT of event A, and event C is a SUBEVENT of event B, then event C is a SUBEVENT of event A.")
+
+conflict_coref_no_coref
+    foreach
+        relation.coreference($x, $y)
+        relation.no_coreference($x, $y)
+    assert
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import inconsistent_answers
+        python inconsistent_answers.setdefault(($x, $y), []).append(("coreference", "no_coreference", "rule"))
+
+conflict_before_no_temporal
+    foreach
+        relation.before($x, $y)
+        relation.no_temporal($x, $y)
+    assert
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import inconsistent_answers
+        python inconsistent_answers.setdefault(($x, $y), []).append(("before", "no_temporal", "rule"))
+
+conflict_before_overlap
+    foreach
+        relation.before($x, $y)
+        relation.overlap($x, $y)
+    assert
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import inconsistent_answers
+        python inconsistent_answers.setdefault(($x, $y), []).append(("before", "overlap", "rule"))
+
+conflict_before_contains
+    foreach
+        relation.before($x, $y)
+        relation.contains($x, $y)
+    assert
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import inconsistent_answers
+        python inconsistent_answers.setdefault(($x, $y), []).append(("before", "contains", "rule"))
+
+conflict_before_simultaneous
+    foreach
+        relation.before($x, $y)
+        relation.simultaneous($x, $y)
+    assert
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import inconsistent_answers
+        python inconsistent_answers.setdefault(($x, $y), []).append(("before", "simultaneous", "rule"))
+
+conflict_before_ends_on
+    foreach
+        relation.before($x, $y)
+        relation.ends_on($x, $y)
+    assert
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import inconsistent_answers
+        python inconsistent_answers.setdefault(($x, $y), []).append(("before", "ends_on", "rule"))
+
+conflict_before_begins_on
+    foreach
+        relation.before($x, $y)
+        relation.begins_on($x, $y)
+    assert
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import inconsistent_answers
+        python inconsistent_answers.setdefault(($x, $y), []).append(("before", "begins_on", "rule"))
+
+conflict_precondition_cause
+    foreach
+        relation.precondition($x, $y)
+        relation.cause($x, $y)
+    assert
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import inconsistent_answers
+        python inconsistent_answers.setdefault(($x, $y), []).append(("precondition", "cause", "rule"))
+
+conflict_precondition_no_causal
+    foreach
+        relation.no_causal($x, $y)
+        relation.precondition($x, $y)
+    assert
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import inconsistent_answers
+        python inconsistent_answers.setdefault(($x, $y), []).append(("precondition", "no_causal", "rule"))
+
+conflict_cause_no_causal
+    foreach
+        relation.no_causal($x, $y)
+        relation.cause($x, $y)
+    assert
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import inconsistent_answers
+        python inconsistent_answers.setdefault(($x, $y), []).append(("cause", "no_causal", "rule"))
+
+conflict_subevent_no_subevent
+    foreach
+        relation.no_subevent($x, $y)
+        relation.subevent($x, $y)
+    assert
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import inconsistent_answers
+        python inconsistent_answers.setdefault(($x, $y), []).append(("no_subevent", "subevent", "rule"))
+
+conflict_overlap_no_temporal
+    foreach
+        relation.overlap($x, $y)
+        relation.no_temporal($x, $y)
+    assert
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import inconsistent_answers
+        python inconsistent_answers.setdefault(($x, $y), []).append(("overlap", "no_temporal", "rule"))
+
+conflict_overlap_contains
+    foreach
+        relation.overlap($x, $y)
+        relation.contains($x, $y)
+    assert
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import inconsistent_answers
+        python inconsistent_answers.setdefault(($x, $y), []).append(("overlap", "contains", "rule"))
+
+conflict_overlap_simultaneous
+    foreach
+        relation.overlap($x, $y)
+        relation.simultaneous($x, $y)
+    assert
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import inconsistent_answers
+        python inconsistent_answers.setdefault(($x, $y), []).append(("overlap", "simultaneous", "rule"))
+
+conflict_overlap_ends_on
+    foreach
+        relation.overlap($x, $y)
+        relation.ends_on($x, $y)
+    assert
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import inconsistent_answers
+        python inconsistent_answers.setdefault(($x, $y), []).append(("overlap", "ends_on", "rule"))
+
+conflict_overlap_begins_on
+    foreach
+        relation.overlap($x, $y)
+        relation.begins_on($x, $y)
+    assert
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import inconsistent_answers
+        python inconsistent_answers.setdefault(($x, $y), []).append(("overlap", "begins_on", "rule"))
+
+conflict_contains_no_temporal
+    foreach
+        relation.contains($x, $y)
+        relation.no_temporal($x, $y)
+    assert
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import inconsistent_answers
+        python inconsistent_answers.setdefault(($x, $y), []).append(("contains", "no_temporal", "rule"))
+
+conflict_contains_simultaneous
+    foreach
+        relation.contains($x, $y)
+        relation.simultaneous($x, $y)
+    assert
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import inconsistent_answers
+        python inconsistent_answers.setdefault(($x, $y), []).append(("contains", "simultaneous", "rule"))
+
+conflict_contains_ends_on
+    foreach
+        relation.contains($x, $y)
+        relation.ends_on($x, $y)
+    assert
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import inconsistent_answers
+        python inconsistent_answers.setdefault(($x, $y), []).append(("contains", "ends_on", "rule"))
+
+conflict_contains_begins_on
+    foreach
+        relation.contains($x, $y)
+        relation.begins_on($x, $y)
+    assert
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import inconsistent_answers
+        python inconsistent_answers.setdefault(($x, $y), []).append(("contains", "begins_on", "rule"))
+
+conflict_simultaneous_no_temporal
+    foreach
+        relation.simultaneous($x, $y)
+        relation.no_temporal($x, $y)
+    assert
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import inconsistent_answers
+        python inconsistent_answers.setdefault(($x, $y), []).append(("simultaneous", "no_temporal", "rule"))
+
+conflict_simultaneous_ends_on
+    foreach
+        relation.simultaneous($x, $y)
+        relation.ends_on($x, $y)
+    assert
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import inconsistent_answers
+        python inconsistent_answers.setdefault(($x, $y), []).append(("simultaneous", "ends_on", "rule"))
+
+conflict_simultaneous_begins_on
+    foreach
+        relation.simultaneous($x, $y)
+        relation.begins_on($x, $y)
+    assert
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import inconsistent_answers
+        python inconsistent_answers.setdefault(($x, $y), []).append(("simultaneous", "begins_on", "rule"))
+
+conflict_ends_on_no_temporal
+    foreach
+        relation.ends_on($x, $y)
+        relation.no_temporal($x, $y)
+    assert
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import inconsistent_answers
+        python inconsistent_answers.setdefault(($x, $y), []).append(("ends_on", "no_temporal", "rule"))
+
+conflict_ends_on_begins_on
+    foreach
+        relation.ends_on($x, $y)
+        relation.begins_on($x, $y)
+    assert
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import inconsistent_answers
+        python inconsistent_answers.setdefault(($x, $y), []).append(("ends_on", "begins_on", "rule"))
+
+conflict_begins_on_no_temporal
+    foreach
+        relation.begins_on($x, $y)
+        relation.no_temporal($x, $y)
+    assert
+        python import sys
+        python sys.path.append("..")
+        python from checkrules import inconsistent_answers
+        python inconsistent_answers.setdefault(($x, $y), []).append(("begins_on", "no_temporal", "rule"))

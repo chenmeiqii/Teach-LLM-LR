@@ -1,0 +1,533 @@
+{
+  "two_events": {
+    "COREFERENCE": {
+      "must": ["NO_CAUSAL", "NO_TEMPORAL","NO_SUBEVENT"],
+      "should_not": [],
+      "text": "If two events are COREFERENCE, then they won’t have temporal, causal, and subevent relations."
+    },
+    "NO_COREFERENCE": {
+      "must": [],
+      "should_not": []
+    },
+    "NO_TEMPORAL": {
+      "must": ["NO_CAUSAL", "NO_SUBEVENT"],
+      "should_not": []
+    },
+    "BEFORE": {
+      "must": ["NO_COREFERENCE", "NO_SUBEVENT"],
+      "should_not": [],
+      "text": "If event A happens BEFORE event B, then they won't have coreference and subevent relations."
+    },
+    "OVERLAP": {
+      "must": ["NO_COREFERENCE", "NO_SUBEVENT"],
+      "should_not": [],
+      "text": "If event A happens OVERLAP with event B, then they won't have coreference and subevent relations."
+    },
+    "CONTAINS": {
+      "must": ["NO_COREFERENCE", "NO_CAUSAL"],
+      "should_not": [],
+      "text": "If event A's time CONTAINS event B's time, then they won't have coreference and causal relations."
+    },
+    "SIMULTANEOUS": {
+      "must": ["NO_COREFERENCE", "NO_CAUSAL", "NO_SUBEVENT"],
+      "should_not": [],
+      "text": "If events A and event B happen SIMULTANEOUSly, then they won’t have coreference, causal, and subevent relations."
+    },
+    "ENDS-ON": {
+      "must": ["NO_COREFERENCE", "NO_CAUSAL", "NO_SUBEVENT"],
+      "should_not": [],
+      "text": "If event A ENDS-ON event B, then they won’t have coreference, causal and subevent relations."
+    },
+    "BEGINS-ON": {
+      "must": ["NO_COREFERENCE", "NO_CAUSAL", "NO_SUBEVENT"],
+      "should_not": [],
+      "text":  "If event A BEGINS-ON event B, then they won’t have coreference, causal and subevent relations."
+    },
+    "NO_CAUSAL": {
+      "must": [],
+      "should_not": []
+    },
+    "CAUSE": {
+      "must": ["NO_COREFERENCE", "NO_SUBEVENT"],
+      "should_not": ["NO_TEMPORAL", "CONTAINS", "SIMULTANEOUS", "BEGINS-ON", "ENDS-ON"],
+      "text": "If event A CAUSEs event B, then event A happens BEFORE or OVERLAP event B, and they won't have coreference and subevent relations."
+    },
+    "PRECONDITION": {
+      "must": ["NO_COREFERENCE", "NO_SUBEVENT"],
+      "should_not": ["NO_TEMPORAL", "CONTAINS", "SIMULTANEOUS", "BEGINS-ON", "ENDS-ON"],
+      "text": "If event A is event B’s PRECONDITION, then event A happens BEFORE or OVERLAP event B, and they won't have coreference and subevent relations."
+    },
+    "NO_SUBEVENT":  {
+      "must": [],
+      "should_not": []
+    },
+    "SUBEVENT": {
+      "must": ["NO_COREFERENCE", "NO_CAUSAL", "CONTAINS"],
+      "should_not": [],
+      "text": "If event B is a SUBEVENT of event A, then they won’t have coreference and causal relations, and event A’s time should CONTAINS event B’s time."
+    }
+  },
+
+  "three_events": {
+     "COREFERENCE": {
+        "COREFERENCE":  {
+          "must": ["COREFERENCE"],
+          "should_not":["CAUSE", "PRECONDITION", "SUBEVENT", "BEFORE", "OVERLAP", "CONTAINS", "ENDS-ON", "BEGINS-ON", "SIMULTANEOUS"]
+        },
+        "BEFORE": {
+          "must": ["BEFORE"],
+          "should_not":["COREFERENCE", "SUBEVENT"]
+        },
+        "OVERLAP": {
+          "must": ["OVERLAP"],
+          "should_not":["COREFERENCE", "SUBEVENT"]
+        },
+        "CONTAINS": {
+          "must": ["CONTAINS"],
+          "should_not":["COREFERENCE", "CAUSE", "PRECONDITION"]
+        },
+        "ENDS-ON": {
+          "must": ["ENDS-ON"],
+          "should_not":["COREFERENCE", "SUBEVENT", "CAUSE", "PRECONDITION"]
+        },
+        "BEGINS-ON": {
+          "must": ["BEGINS-ON"],
+          "should_not":["COREFERENCE", "SUBEVENT", "CAUSE", "PRECONDITION"]
+        },
+        "SIMULTANEOUS": {
+          "must": ["SIMULTANEOUS"],
+          "should_not":["COREFERENCE", "SUBEVENT", "CAUSE", "PRECONDITION"]
+        },
+        "CAUSE": {
+          "must": ["CAUSE"],
+          "should_not":["COREFERENCE", "SIMULTANEOUS", "BEGINS-ON", "CONTAINS", "ENDS-ON", "SUBEVENT"]
+        },
+        "PRECONDITION": {
+          "must": ["PRECONDITION"],
+          "should_not":["COREFERENCE", "SIMULTANEOUS", "BEGINS-ON", "CONTAINS", "ENDS-ON", "SUBEVENT"]
+        },
+        "SUBEVENT": {
+          "must": ["SUBEVENT", "CONTAINS"],
+          "should_not":["COREFERENCE", "CAUSE", "PRECONDITION"]
+        }
+     },
+     "BEFORE": {
+        "COREFERENCE":  {
+          "must": ["BEFORE"],
+          "should_not":["COREFERENCE", "SUBEVENT"]
+        },
+        "BEFORE": {
+          "must": ["BEFORE"],
+          "should_not":["COREFERENCE", "SUBEVENT"],
+          "text": "If event A happens BEFORE event B, and event B happens BEFORE event C, then event A happens BEFORE event C."
+        },
+        "OVERLAP": {
+          "must": ["BEFORE"],
+          "should_not":["COREFERENCE", "SUBEVENT"],
+          "text": "If event A happens BEFORE event B, and event B happens OVERLAP with event C, then event A happens BEFORE event C."
+        },
+        "CONTAINS": {
+          "must": ["BEFORE"],
+          "should_not":["COREFERENCE", "SUBEVENT"],
+          "text": "If event A happens BEFORE event B, and event B’s time CONTAINS event C’s time, then event A happens BEFORE event C."
+        },
+        "ENDS-ON": {
+          "must": ["BEFORE"],
+          "should_not":["COREFERENCE", "SUBEVENT"],
+          "text": "If event A happens BEFORE event B, and event B ENDS-ON event C, then event A happens BEFORE event C."
+        },
+        "BEGINS-ON": {
+          "must": ["BEFORE"],
+          "should_not":["COREFERENCE", "SUBEVENT"],
+          "text": "If event A happens BEFORE event B, and event B BEGINS-ON event C, then event A happens BEFORE event C."
+        },
+        "SIMULTANEOUS": {
+          "must": ["BEFORE"],
+          "should_not":["COREFERENCE", "SUBEVENT"],
+          "text": "If event A happens BEFORE event B, and event B and event C happen SIMULTANEOUSly, then event A happens BEFORE event C."
+        },
+        "CAUSE": {
+          "must": ["BEFORE"],
+          "should_not":["COREFERENCE", "SUBEVENT"],
+          "text": "If event A happens BEFORE event B, and event B CAUSEs event C, then event A happens BEFORE event C."
+        },
+        "PRECONDITION": {
+          "must": ["BEFORE"],
+          "should_not":["COREFERENCE", "SUBEVENT"],
+          "text": "If event A happens BEFORE event B, and event B is event C’s PRECONDITION, then event A happens BEFORE event C."
+        },
+        "SUBEVENT": {
+          "must": ["BEFORE"],
+          "should_not":["COREFERENCE", "SUBEVENT"],
+          "text": "If event A happens BEFORE event B, and event C is a SUBEVENT of event B, then event A happens BEFORE event C."
+        }
+     },
+     "OVERLAP": {
+        "COREFERENCE":  {
+          "must": ["OVERLAP"],
+          "should_not":["COREFERENCE", "SUBEVENT"]
+        },
+        "BEFORE": {
+          "must": ["BEFORE"],
+          "should_not":["COREFERENCE", "SUBEVENT"],
+          "text": "If event A happens OVERLAP with event B, and event B happens BEFORE event C, then event A happens BEFORE event C."
+        },
+        "OVERLAP": {
+          "must": [],
+          "should_not":["BEGINS-ON", "SIMULTANEOUS", "CONTAINS", "COREFERENCE", "SUBEVENT"]
+        },
+        "CONTAINS": {
+          "must": [],
+          "should_not":["SIMULTANEOUS", "BEGINS-ON", "COREFERENCE"]
+        },
+        "ENDS-ON": {
+          "must": [],
+          "should_not":["COREFERENCE", "SUBEVENT"]
+        },
+        "BEGINS-ON": {
+          "must": [],
+          "should_not":["BEFORE","ENDS-ON","BEGINS-ON", "SIMULTANEOUS", "COREFERENCE", "SUBEVENT"]
+        },
+        "SIMULTANEOUS": {
+          "must": ["OVERLAP"],
+          "should_not":["SUBEVENT", "COREFERENCE"],
+          "text": "If event A happens OVERLAP with event B, and event B and event C happen SIMULTANEOUSly, then event A happens OVERLAP with event C."
+        },
+        "CAUSE": {
+          "must": [],
+          "should_not":["CONTAINS","COREFERENCE", "SIMULTANEOUS", "BEGINS-ON", "SUBEVENT"]
+        },
+        "PRECONDITION": {
+          "must": [],
+          "should_not":["CONTAINS","COREFERENCE", "SIMULTANEOUS", "BEGINS-ON","SUBEVENT"]
+        },
+        "SUBEVENT": {
+          "must": [],
+          "should_not":["COREFERENCE", "SIMULTANEOUS", "BEGINS-ON"]
+        }
+     },
+     "CONTAINS": {
+        "COREFERENCE":  {
+          "must": ["CONTAINS"],
+          "should_not":["COREFERENCE"]
+        },
+        "BEFORE": {
+          "must": [],
+          "should_not":["SIMULTANEOUS", "BEGINS-ON", "COREFERENCE"]
+        },
+        "OVERLAP": {
+          "must": [],
+          "should_not":["BEFORE","SIMULTANEOUS", "BEGINS-ON", "ENDS-ON", "COREFERENCE"],
+          "text":"If event A’s time CONTAINS event B’s time, and event B happens OVERLAP with event C, then either event A happens OVERLAP, or event A’s time CONTAINS event C’s time."
+        },
+        "CONTAINS": {
+          "must": ["CONTAINS"],
+          "should_not":["COREFERENCE"],
+          "text": "If event A’s time CONTAINS event B’s time, and event B’s time CONTAINS event C’s time, then event A’s time CONTAINS event C’s time."
+        },
+        "ENDS-ON": {
+          "must": [],
+          "should_not":["BEFORE","SIMULTANEOUS", "BEGINS-ON","COREFERENCE"]
+        },
+        "BEGINS-ON": {
+          "must": [],
+          "should_not":["BEFORE","SIMULTANEOUS", "BEGINS-ON","ENDS-ON","COREFERENCE"],
+          "text": "If event A’s time CONTAINS event B’s time, and event B BEGINS-ON event C, then either event A happens OVERLAP event C or event A’s time CONTAINS event C’s time."
+        },
+        "SIMULTANEOUS": {
+          "must": ["CONTAINS"],
+          "should_not":["COREFERENCE"],
+          "text": "If event A’s time CONTAINS event B’s time, and event B and event C happen SIMULTANEOUSly, then event A’s time CONTAINS event C’s time."
+        },
+        "CAUSE": {
+          "must": [],
+          "should_not":["COREFERENCE", "SIMULTANEOUS", "BEGINS-ON"]
+        },
+        "PRECONDITION": {
+          "must": [],
+          "should_not":["COREFERENCE", "SIMULTANEOUS", "BEGINS-ON"]
+        },
+        "SUBEVENT": {
+          "must": ["CONTAINS"],
+          "should_not":["COREFERENCE"],
+          "text": "If event A’s time CONTAINS event B’s time, and event C is a SUBEVENT of event B, then event A’s time CONTAINS event C’s time.\n"
+        }
+     },
+     "SIMULTANEOUS": {
+        "COREFERENCE":  {
+          "must": ["SIMULTANEOUS"],
+          "should_not":["SUBEVENT", "CAUSE", "PRECONDITION"]
+        },
+        "BEFORE": {
+          "must": ["BEFORE"],
+          "should_not":["COREFERENCE", "SUBEVENT"],
+          "text": "If events A and B happen SIMULTANEOUSly, and event B happens BEFORE event C, then event A happens BEFORE event C."
+        },
+        "OVERLAP": {
+          "must": ["OVERLAP"],
+          "should_not":["COREFERENCE", "SUBEVENT"],
+          "text": "If events A and B happen SIMULTANEOUSly, and event B happens OVERLAP with event C, then event A happens OVERLAP with event C."
+        },
+        "CONTAINS": {
+          "must": ["CONTAINS"],
+          "should_not":["COREFERENCE"],
+          "text": "If events A and B happen SIMULTANEOUSly, and event B’s time CONTAINS event C’s time, then event A’s time CONTAINS event C’s time."
+        },
+        "ENDS-ON": {
+          "must": ["ENDS-ON"],
+          "should_not":["COREFERENCE", "SUBEVENT"],
+          "text": "If events A and B happen SIMULTANEOUSly, and event B ENDS-ON event C, then event A ENDS-ON event C."
+        },
+        "BEGINS-ON": {
+          "must": ["BEGINS-ON"],
+          "should_not":["COREFERENCE", "SUBEVENT", "CAUSE", "PRECONDITION"],
+          "text": "If events A and B happen SIMULTANEOUSly, and event B BEGINS-ON event C, then event A BEGINS-ON event C."
+        },
+        "SIMULTANEOUS": {
+          "must": ["SIMULTANEOUS"],
+          "should_not":["SUBEVENT", "CAUSE", "PRECONDITION"],
+          "text": "If events A and B happen SIMULTANEOUSly, and event B and event C happen SIMULTANEOUSly, then event A and event C happen SIMULTANEOUSly."
+        },
+        "CAUSE": {
+          "must": [],
+          "should_not":["COREFERENCE", "SIMULTANEOUS", "BEGINS-ON", "ENDS-ON", "SUBEVENT"],
+          "text": "If events A and B happen SIMULTANEOUSly, and event B CAUSEs event C, then event A happens either BEFORE or OVERLAP with event C."
+        },
+        "PRECONDITION": {
+          "must": [],
+          "should_not":["COREFERENCE", "SIMULTANEOUS", "BEGINS-ON", "ENDS-ON", "SUBEVENT"],
+          "text": "If events A and B happen SIMULTANEOUSly, and event B is event C’s PRECONDITION, then event A happens either BEFORE or OVERLAP with event C."
+        },
+        "SUBEVENT": {
+          "must": ["CONTAINS"],
+          "should_not":["COREFERENCE", "CAUSE", "PRECONDITION"],
+          "text": "If events A and B happen SIMULTANEOUSly, and event C is a SUBEVENT of event B, then event A’s time CONTAINS event C’s time."
+        }
+     },
+     "ENDS-ON": {
+        "COREFERENCE":  {
+          "must": ["ENDS-ON"],
+          "should_not":["COREFERENCE", "SUBEVENT"]
+        },
+        "BEFORE": {
+          "must": [],
+          "should_not":["COREFERENCE", "SUBEVENT"]
+        },
+        "OVERLAP": {
+          "must": [],
+          "should_not":["COREFERENCE", "SUBEVENT"]
+        },
+        "CONTAINS": {
+          "must": ["BEFORE"],
+          "should_not":["COREFERENCE", "SUBEVENT"],
+          "text": "If event A ENDS-ON event B, and event B’s time CONTAINS event C’s time, then event A happens BEFORE event C."
+        },
+        "ENDS-ON": {
+          "must": [],
+          "should_not":["COREFERENCE", "SUBEVENT"]
+        },
+        "BEGINS-ON": {
+          "must": ["ENDS-ON"],
+          "should_not":["COREFERENCE", "SUBEVENT"],
+          "text": "If event A ENDS-ON event B,  and event B BEGINS-ON event C, then event A ENDS-ON event C."
+        },
+        "SIMULTANEOUS": {
+          "must": ["ENDS-ON"],
+          "should_not":["COREFERENCE", "SUBEVENT"],
+          "text": "If event A ENDS-ON event B, and event B and event C happen SIMULTANEOUSly, then event A ENDS-ON event C."
+        },
+        "CAUSE": {
+          "must": [],
+          "should_not":["COREFERENCE", "SUBEVENT"]
+        },
+        "PRECONDITION": {
+          "must": [],
+          "should_not":["COREFERENCE", "SUBEVENT"]
+        },
+        "SUBEVENT": {
+          "must": ["BEFORE"],
+          "should_not":["COREFERENCE", "SUBEVENT"]
+        }
+     },
+     "BEGINS-ON": {
+        "COREFERENCE":  {
+          "must": ["BEGINS-ON"],
+          "should_not":["COREFERENCE", "SUBEVENT", "CAUSE", "PRECONDITION"]
+        },
+        "BEFORE": {
+          "must": [],
+          "should_not":["SIMULTANEOUS", "BEGINS-ON","COREFERENCE"]
+        },
+        "OVERLAP": {
+          "must": [],
+          "should_not":["SIMULTANEOUS", "BEGINS-ON", "COREFERENCE"]
+        },
+        "CONTAINS": {
+          "must": [],
+          "should_not":[]
+        },
+        "ENDS-ON": {
+          "must": [],
+          "should_not":["SIMULTANEOUS", "BEGINS-ON", "ENDS-ON","COREFERENCE"]
+        },
+        "BEGINS-ON": {
+          "must": ["BEGINS-ON"],
+          "should_not":["COREFERENCE", "SUBEVENT", "CAUSE", "PRECONDITION"],
+          "text": "If event A BEGINS-ON event B,  and event B BEGINS-ON event C, then event A BEGINS-ON event C."
+        },
+        "SIMULTANEOUS": {
+          "must": ["BEGINS-ON"],
+          "should_not":["COREFERENCE", "SUBEVENT", "CAUSE", "PRECONDITION"],
+          "text": "If event A BEGINS-ON event B, and event B and event C happen SIMULTANEOUSly, then event A BEGINS-ON event C."
+        },
+        "CAUSE": {
+          "must": [],
+          "should_not":["SIMULTANEOUS","COREFERENCE", "BEGINS-ON"]
+        },
+        "PRECONDITION": {
+          "must": [],
+          "should_not":["SIMULTANEOUS","COREFERENCE", "BEGINS-ON"]
+        },
+        "SUBEVENT": {
+          "must": [],
+          "should_not":[]
+        }
+     },
+     "CAUSE": {
+        "COREFERENCE":  {
+          "must": ["CAUSE"],
+          "should_not":["COREFERENCE", "SUBEVENT", "SIMULTANEOUS", "BEGINS-ON"]
+        },
+        "BEFORE": {
+          "must": ["BEFORE"],
+          "should_not":["COREFERENCE", "SUBEVENT"],
+          "text": "If event A CAUSEs event B, and event B happens BEFORE event C, then event A happens BEFORE event C."
+        },
+        "OVERLAP": {
+          "must": [],
+          "should_not":["CONTAINS", "SIMULTANEOUS", "BEGINS-ON", "COREFERENCE", "SUBEVENT"]
+        },
+        "CONTAINS": {
+          "must": [],
+          "should_not":["SIMULTANEOUS","BEGINS-ON", "COREFERENCE"]
+        },
+        "ENDS-ON": {
+          "must": [],
+          "should_not":["SUBEVENT","COREFERENCE"]
+        },
+        "BEGINS-ON": {
+          "must": [],
+          "should_not":["SIMULTANEOUS","BEGINS-ON","ENDS-ON", "COREFERENCE"]
+        },
+        "SIMULTANEOUS": {
+          "must": [],
+          "should_not":["COREFERENCE", "SUBEVENT", "SIMULTANEOUS", "BEGINS-ON"]
+        },
+        "CAUSE": {
+          "must": ["CAUSE"],
+          "should_not":["COREFERENCE", "SUBEVENT", "SIMULTANEOUS", "BEGINS-ON"],
+          "text": "If event A CAUSEs event B, and event B CAUSEs event C, then event A CAUSEs event C."
+        },
+        "PRECONDITION": {
+          "must": ["PRECONDITION"],
+          "should_not":["COREFERENCE", "SUBEVENT", "SIMULTANEOUS", "BEGINS-ON"],
+          "text": "If event A CAUSEs event B, and event B is event C’s PRECONDITION, then event A is event C’s PRECONDITION."
+        },
+        "SUBEVENT": {
+          "must": ["CAUSE"],
+          "should_not":["COREFERENCE", "SUBEVENT", "SIMULTANEOUS", "BEGINS-ON"],
+          "text": "If event A CAUSEs event B, and event C is a SUBEVENT of event B, then event A CAUSEs event C."
+        }
+     },
+     "PRECONDITION": {
+        "COREFERENCE":  {
+          "must": ["PRECONDITION"],
+          "should_not":["COREFERENCE", "SUBEVENT", "SIMULTANEOUS", "BEGINS-ON"]
+        },
+        "BEFORE": {
+          "must": ["BEFORE"],
+          "should_not":["COREFERENCE", "SUBEVENT"],
+          "text": "If event A is event B’s PRECONDITION, and event B happens BEFORE event C, then event A happens BEFORE event C."
+        },
+        "OVERLAP": {
+          "must": [],
+          "should_not":["CONTAINS", "SIMULTANEOUS", "BEGINS-ON", "COREFERENCE", "SUBEVENT"]
+        },
+        "CONTAINS": {
+          "must": [],
+          "should_not":["SIMULTANEOUS","BEGINS-ON", "COREFERENCE"]
+        },
+        "ENDS-ON": {
+          "must": [],
+          "should_not":["SUBEVENT","COREFERENCE"]
+        },
+        "BEGINS-ON": {
+          "must": [],
+          "should_not":["SIMULTANEOUS","BEGINS-ON", "COREFERENCE"]
+        },
+        "SIMULTANEOUS": {
+          "must": [],
+          "should_not":["COREFERENCE", "SUBEVENT", "SIMULTANEOUS", "BEGINS-ON"]
+        },
+        "CAUSE": {
+          "must": [],
+          "should_not":["COREFERENCE", "SUBEVENT", "SIMULTANEOUS", "BEGINS-ON"]
+        },
+        "PRECONDITION": {
+          "must": ["PRECONDITION"],
+          "should_not":["COREFERENCE", "SUBEVENT", "SIMULTANEOUS", "BEGINS-ON"],
+          "text": "If event A is event B’s PRECONDITION, and event B is event C’s PRECONDITION, then event A is event C’s PRECONDITION."
+        },
+        "SUBEVENT": {
+          "must": ["PRECONDITION"],
+          "should_not":["COREFERENCE", "SUBEVENT", "SIMULTANEOUS", "BEGINS-ON"],
+          "text": "If event A is event B’s PRECONDITION, and event C is a SUBEVENT of event B, then event A is event C’s PRECONDITION."
+        }
+     },
+     "SUBEVENT": {
+        "COREFERENCE":  {
+          "must": ["SUBEVENT"],
+          "should_not":["COREFERENCE", "CAUSE", "PRECONDITION"]
+        },
+        "BEFORE": {
+          "must": [],
+          "should_not":["SIMULTANEOUS", "BEGINS-ON", "COREFERENCE"]
+        },
+        "OVERLAP": {
+          "must": [],
+          "should_not":["BEFORE", "SIMULTANEOUS", "BEGINS-ON", "ENDS-ON","COREFERENCE"]
+        },
+        "CONTAINS": {
+          "must": ["CONTAINS"],
+          "should_not":["COREFERENCE"],
+          "text": "If event B is a SUBEVENT of event A, and event B’s time CONTAINS event C’s time, then event A’s time CONTAINS event C’s time."
+        },
+        "ENDS-ON": {
+          "must": [],
+          "should_not":["BEFORE", "SIMULTANEOUS", "BEGINS-ON","COREFERENCE"]
+        },
+        "BEGINS-ON": {
+          "must": [],
+          "should_not":["BEFORE","SIMULTANEOUS","BEGINS-ON","ENDS-ON", "COREFERENCE"]
+        },
+        "SIMULTANEOUS": {
+          "must": ["CONTAINS"],
+          "should_not":["COREFERENCE"],
+          "text": "If event B is a SUBEVENT of event A, and event B and event C happen SIMULTANEOUSly, then event A’s time CONTAINS event C’s time."
+        },
+        "CAUSE": {
+          "must": [],
+          "should_not":["COREFERENCE", "SUBEVENT", "SIMULTANEOUS", "BEGINS-ON"]
+        },
+        "PRECONDITION": {
+          "must": [],
+          "should_not":["COREFERENCE", "SUBEVENT", "SIMULTANEOUS", "BEGINS-ON"]
+        },
+        "SUBEVENT": {
+          "must": ["SUBEVENT"],
+          "should_not":["COREFERENCE", "CAUSE", "PRECONDITION"],
+          "text": "If event B is a SUBEVENT of event A, and event C is a SUBEVENT of event B, then event C is a SUBEVENT of event A."
+        }
+     }
+  }
+}
