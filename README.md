@@ -1,5 +1,5 @@
 # Teach-LLM-LR
-Official implementation of the Paper [*Learning To Teach Large Language Models Logical Reasoning*](https://arxiv.org/abs/2310.09158).
+Official implementation of the Paper [*Improving Large Language Models in Event Relation Logical Prediction (Learning To Teach Large Language Models Logical Reasoning)*](https://arxiv.org/abs/2310.09158).
 
 Authors: **Meiqi Chen, Yubo Ma, Kaitao Song, Yixin Cao, Yan Zhang, and Dongsheng Li.**
 
@@ -41,3 +41,14 @@ python evaluate_maven.py --model_name ChatGPT --add_rule none
 }
 ```
 
+## Citation
+Please cite our paper if this repository inspires your work.
+```bibtex
+@inproceedings{chen2024improving,
+  title={Improving Large Language Models in Event Relation Logical Prediction},
+  author={Chen, Meiqi and Ma, Yubo and Song, Kaitao and Cao, Yixin and Zhang, Yan and Li, Dongsheng},
+  booktitle={Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  pages={9451--9478},
+  year={2024}
+}
+```
